@@ -1,8 +1,5 @@
 import type { NextPage } from "next";
 
-import { TextField, Typography } from "@mui/material";
-import Link from "next/link";
-
 import useStyles from "./theme";
 
 interface INavBarMenuProps {
