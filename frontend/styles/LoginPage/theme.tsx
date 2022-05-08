@@ -13,28 +13,21 @@ const useStyles = makeStyles({
   contentContainer: {
     display: "flex",
     justifyContent: "space-around",
-    flexDirection: "column",
     alignItems: "center",
 
-    marginTop: "12rem",
+    marginTop: "10rem",
 
-    width: "23vw",
-    height: "50vh",
+    width: "60vw",
+    height: "62vh",
 
-    padding: "14px ",
+    padding: "14px",
 
     border: "1px solid #adadad",
     borderRadius: "5px",
-
-    transition: "0.3s",
-
-    "&:hover": {
-      boxShadow: "7px 7px 9px 0px #bebebe",
-    },
   },
 
   googleButton: {
-    width: "100%",
+    width: "95%",
 
     display: "flex",
     justifyContent: "space-evenly",
@@ -50,6 +43,62 @@ const useStyles = makeStyles({
 
       border: "1px solid #da5050",
     },
+  },
+
+  lineDivision: {
+    height: "95%",
+    width: "0px",
+    border: "1px solid #bebebed5",
+  },
+
+  loginContainer: {
+    display: "flex",
+    justifyContent: "space-around",
+    flexDirection: "column",
+    alignItems: "center",
+
+    width: "40%",
+    height: "100%",
+  },
+  loginBtn: {
+    background: "#252525",
+    color: "#fefefe",
+    fontWeight: "bold",
+    boxShadow: "none",
+  },
+
+  registerContainer: {
+    display: "flex",
+    justifyContent: "space-around",
+    flexDirection: "column",
+    alignItems: "center",
+
+    width: "45%",
+    height: "100%",
+
+    "& button": {
+      border: "1px solid #252525",
+      background: "none",
+      color: "#252525",
+      fontWeight: "bold",
+      boxShadow: "none",
+
+      "&:hover": {
+        background: "none",
+      },
+    },
+  },
+
+  forgotsContainer: {
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+
+    color: "#919191eb",
+    fontWeight: "bold",
+    textDecoration: "underline",
+
+    width: "100%",
   },
 });
 

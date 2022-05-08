@@ -27,7 +27,7 @@ const Home: NextPage = () => {
           { href: "/login", content: "Login" },
           { href: "", content: "|" },
           {
-            href: "/register",
+            href: "/login",
             content: "Register",
             component: (
               <Button
