@@ -8,10 +8,10 @@ const useStyles = makeStyles({
       background?: string;
       fontColor?: string;
     }) => {
-      return props.width && "95%";
+      return props.width ? props.width : "95%";
     },
     height: (props: { height?: string }) => {
-      return props.height && "8%";
+      return props.height ? props.height : "8%";
     },
     background: (props: { background?: string }) => {
       if (props.background === "primary") {

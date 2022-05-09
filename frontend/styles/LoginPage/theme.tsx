@@ -26,6 +26,25 @@ const useStyles = makeStyles({
     borderRadius: "5px",
   },
 
+  formLogin: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    alignItems: "center",
+
+    width: "100%",
+    height: "50%",
+  },
+
+  formRegister: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+
+    width: "100%",
+    height: "85%",
+  },
+
   googleButton: {
     width: "95%",
 
@@ -60,6 +79,7 @@ const useStyles = makeStyles({
     width: "40%",
     height: "100%",
   },
+
   loginBtn: {
     background: "#252525",
     color: "#fefefe",

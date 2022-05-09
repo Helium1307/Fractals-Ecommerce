@@ -1,14 +1,46 @@
 import type { NextPage } from "next";
 import useStyles from "../styles/LoginPage/theme";
 
-import { Button, TextField, Container, Typography, Fab } from "@mui/material";
-import { Google, ArrowBack } from "@mui/icons-material";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+
+import { Button, TextField, Container, Typography } from "@mui/material";
+import { Google } from "@mui/icons-material";
 import Link from "next/link";
 import CircleBackButton from "../src/components/UI/CircleBackButton";
 import ButtonStyled from "../src/components/UI/Button";
+import TextInput from "../src/components/UI/TextInput";
+import { useState } from "react";
+
+const loginSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Digite um e-mail válido")
+    .required("Digite um e-mail"),
+  password: Yup.string().required("Digite uma senha"),
+});
+
+const registerSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Digite um e-mail válido")
+    .required("Digite um e-mail"),
+  password: Yup.string().required("Digite uma senha"),
+  password2: Yup.string()
+    .required("Digite uma senha")
+    .oneOf([Yup.ref("password"), null], "Senhas devem corresponder"),
+  CPForCNPJ: Yup.string().required("Ex.: XXX.XXX.XXX-XX"),
+  CEP: Yup.string().required("XXXXX-XXX"),
+});
 
 const Login: NextPage = () => {
   const classes = useStyles();
+
+  const handleSubmitLogin = (e: any) => {
+    console.log(e);
+  };
+
+  const handleSubmitRegister = (e: any) => {
+    console.log(e);
+  };
 
   return (
     <body>
@@ -19,30 +51,54 @@ const Login: NextPage = () => {
             <Typography fontWeight={"bold"} variant="h4">
               JÁ POSSUO CADASTRO
             </Typography>
-            <TextField
-              style={{ width: "90%" }}
-              variant="outlined"
-              placeholder="Email"
-              label="Email"
-              type="email"
-            />
-            <TextField
-              style={{ width: "90%" }}
-              variant="outlined"
-              placeholder="Password"
-              label="Password"
-              type="password"
-            />
-
-            <ButtonStyled
-              type="submit"
-              width="95%"
-              height="8%"
-              background={"primary"}
+            <Formik
+              initialValues={{
+                email: "",
+                password: "",
+              }}
+              validationSchema={loginSchema}
+              onSubmit={handleSubmitLogin}
             >
-              Login
-            </ButtonStyled>
+              {(props) => (
+                <Form className={classes.formLogin}>
+                  <Field
+                    as={TextField}
+                    name="email"
+                    variant="outlined"
+                    label="Email"
+                    type="email"
+                    placeholder="Email"
+                    style={{ width: "90%" }}
+                  />
+                  <Field
+                    as={TextField}
+                    name="password"
+                    variant="outlined"
+                    style={{ width: "90%" }}
+                    label="Password"
+                    placeholder="Senha"
+                    type="password"
+                  />
 
+                  {/* <Field
+                    as={TextField}
+                    name="email"
+                    placeholder={"Testezinho"}
+                  /> */}
+
+                  <ButtonStyled
+                    background="primary"
+                    height="15%"
+                    type="submit"
+                    onClick={() => {
+                      handleSubmitLogin(props);
+                    }}
+                  >
+                    Login
+                  </ButtonStyled>
+                </Form>
+              )}
+            </Formik>
             <div className={classes.forgotsContainer}>
               <Link href={"/forgot-login"}>
                 <Typography variant="overline">Esqueci meu login</Typography>
@@ -73,49 +129,71 @@ const Login: NextPage = () => {
             <Typography fontWeight={"bold"} variant="h4">
               QUERO ME CADASTRAR
             </Typography>
-            <TextField
-              style={{ width: "90%" }}
-              variant="outlined"
-              placeholder="Email *"
-              label="Email"
-              type="email"
-            />
-            <TextField
-              style={{ width: "90%" }}
-              variant="outlined"
-              placeholder="Senha *"
-              label="Senha"
-              type="password"
-            />
-            <TextField
-              style={{ width: "90%" }}
-              variant="outlined"
-              placeholder="Confirmar senha *"
-              label="Confirmar senha"
-              type="password"
-            />
-            <TextField
-              style={{ width: "90%" }}
-              variant="outlined"
-              placeholder="CPF ou CNPJ"
-              label="CPF ou CNPJ"
-              type="text"
-            />
-            <TextField
-              style={{ width: "90%" }}
-              variant="outlined"
-              placeholder="CEP"
-              label="XXXXX-XXX"
-              type="text"
-            />
-
-            <Button
-              variant="contained"
-              type="submit"
-              style={{ width: "95%", height: "8%" }}
+            <Formik
+              initialValues={{
+                email: "",
+                password: "",
+                password2: "",
+                CPForCNPJ: "",
+                CEP: "",
+              }}
+              validationSchema={registerSchema}
+              onSubmit={handleSubmitRegister}
             >
-              Cadastrar
-            </Button>
+              {(props) => (
+                <Form className={classes.formRegister}>
+                  <TextField
+                    name="email"
+                    style={{ width: "90%" }}
+                    variant="outlined"
+                    placeholder="Email*"
+                    label="Digite um email"
+                    type="email"
+                  />
+                  <TextField
+                    name="password"
+                    style={{ width: "90%" }}
+                    variant="outlined"
+                    placeholder="Senha*"
+                    label="Digite uma senha"
+                    type="password"
+                  />
+                  <TextField
+                    name="password2"
+                    style={{ width: "90%" }}
+                    variant="outlined"
+                    placeholder="Confirmar senha*"
+                    label="Confirme a senha"
+                    type="password"
+                  />
+                  <TextField
+                    name="CPForCNPJ"
+                    style={{ width: "90%" }}
+                    variant="outlined"
+                    placeholder="CPF ou CNPJ*"
+                    label="CPF ou CNPJ"
+                    type="text"
+                  />
+                  <TextField
+                    name="CEP"
+                    style={{ width: "90%" }}
+                    variant="outlined"
+                    placeholder="CEP*"
+                    label="CEP"
+                    type="text"
+                  />
+
+                  <ButtonStyled
+                    width="100%"
+                    height="8%"
+                    type="submit"
+                    background="secondary"
+                  >
+                    Cadastrar
+                  </ButtonStyled>
+                </Form>
+              )}
+            </Formik>
           </div>
         </Container>
       </main>
