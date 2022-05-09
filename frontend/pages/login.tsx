@@ -9,7 +9,7 @@ import { Google } from "@mui/icons-material";
 import Link from "next/link";
 import CircleBackButton from "../src/components/UI/CircleBackButton";
 import ButtonStyled from "../src/components/UI/Button";
-import TextInput from "../src/components/UI/TextInput";
+import TextInput from "../src/components/UI/Form/TextInput";
 import { useState } from "react";
 
 const loginSchema = Yup.object().shape({
@@ -61,8 +61,7 @@ const Login: NextPage = () => {
             >
               {(props) => (
                 <Form className={classes.formLogin}>
-                  <Field
-                    as={TextField}
+                  <TextInput
                     name="email"
                     variant="outlined"
                     label="Email"
@@ -70,8 +69,7 @@ const Login: NextPage = () => {
                     placeholder="Email"
                     style={{ width: "90%" }}
                   />
-                  <Field
-                    as={TextField}
+                  <TextInput
                     name="password"
                     variant="outlined"
                     style={{ width: "90%" }}
@@ -79,12 +77,6 @@ const Login: NextPage = () => {
                     placeholder="Senha"
                     type="password"
                   />
-
-                  {/* <Field
-                    as={TextField}
-                    name="email"
-                    placeholder={"Testezinho"}
-                  /> */}
 
                   <ButtonStyled
                     background="primary"
