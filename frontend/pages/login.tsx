@@ -25,10 +25,10 @@ const registerSchema = Yup.object().shape({
     .required("Digite um e-mail"),
   password: Yup.string().required("Digite uma senha"),
   password2: Yup.string()
-    .required("Digite uma senha")
+    .required("Digite a mesma senha")
     .oneOf([Yup.ref("password"), null], "Senhas devem corresponder"),
-  CPForCNPJ: Yup.string().required("Ex.: XXX.XXX.XXX-XX"),
-  CEP: Yup.string().required("XXXXX-XXX"),
+  CPF: Yup.string().required("Digite um CPF"),
+  CEP: Yup.string().required("Digite um CEP"),
 });
 
 const Login: NextPage = () => {
@@ -63,28 +63,31 @@ const Login: NextPage = () => {
                 <Form className={classes.formLogin}>
                   <TextInput
                     name="email"
-                    variant="outlined"
-                    label="Email"
-                    type="email"
-                    placeholder="Email"
-                    style={{ width: "90%" }}
+                    textFieldProps={{
+                      variant: "outlined",
+                      label: "Email",
+                      style: { width: "90%" },
+                      placeholder: "Email",
+                      type: "email",
+                    }}
                   />
+
                   <TextInput
                     name="password"
-                    variant="outlined"
-                    style={{ width: "90%" }}
-                    label="Password"
-                    placeholder="Senha"
-                    type="password"
+                    textFieldProps={{
+                      variant: "outlined",
+                      label: "Senha",
+                      style: { width: "90%" },
+                      placeholder: "Senha",
+                      type: "password",
+                    }}
                   />
 
                   <ButtonStyled
-                    background="primary"
-                    height="15%"
+                    width="100%"
+                    height="16%"
                     type="submit"
-                    onClick={() => {
-                      handleSubmitLogin(props);
-                    }}
+                    styledStatus="primary"
                   >
                     Login
                   </ButtonStyled>
@@ -134,52 +137,62 @@ const Login: NextPage = () => {
             >
               {(props) => (
                 <Form className={classes.formRegister}>
-                  <TextField
+                  <TextInput
                     name="email"
-                    style={{ width: "90%" }}
-                    variant="outlined"
-                    placeholder="Email*"
-                    label="Digite um email"
-                    type="email"
+                    textFieldProps={{
+                      variant: "outlined",
+                      label: "Email",
+                      style: { width: "90%" },
+                      placeholder: "Email",
+                      type: "email",
+                    }}
                   />
-                  <TextField
+                  <TextInput
                     name="password"
-                    style={{ width: "90%" }}
-                    variant="outlined"
-                    placeholder="Senha*"
-                    label="Digite uma senha"
-                    type="password"
+                    textFieldProps={{
+                      variant: "outlined",
+                      label: "Digite uma Senha",
+                      style: { width: "90%" },
+                      placeholder: "Digite uma senha",
+                      type: "password",
+                    }}
                   />
-                  <TextField
+                  <TextInput
                     name="password2"
-                    style={{ width: "90%" }}
-                    variant="outlined"
-                    placeholder="Confirmar senha*"
-                    label="Confirme a senha"
-                    type="password"
+                    textFieldProps={{
+                      variant: "outlined",
+                      label: "Confirme sua senha",
+                      style: { width: "90%" },
+                      placeholder: "Confirme sua senha",
+                      type: "password",
+                    }}
                   />
-                  <TextField
-                    name="CPForCNPJ"
-                    style={{ width: "90%" }}
-                    variant="outlined"
-                    placeholder="CPF ou CNPJ*"
-                    label="CPF ou CNPJ"
-                    type="text"
+                  <TextInput
+                    name="CPF"
+                    textFieldProps={{
+                      variant: "outlined",
+                      label: "Digite seu CPF",
+                      style: { width: "90%" },
+                      placeholder: "Digite seu CPF",
+                      type: "text",
+                    }}
                   />
-                  <TextField
+                  <TextInput
                     name="CEP"
-                    style={{ width: "90%" }}
-                    variant="outlined"
-                    placeholder="CEP*"
-                    label="CEP"
-                    type="text"
+                    textFieldProps={{
+                      variant: "outlined",
+                      label: "Digite seu CEP",
+                      style: { width: "90%" },
+                      placeholder: "Digite seu CEP",
+                      type: "text",
+                    }}
                   />
 
                   <ButtonStyled
                     width="100%"
-                    height="8%"
+                    height="10%"
                     type="submit"
-                    background="secondary"
+                    styledStatus="secondary"
                   >
                     Cadastrar
                   </ButtonStyled>

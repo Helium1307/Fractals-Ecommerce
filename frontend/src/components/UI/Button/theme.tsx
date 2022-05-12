@@ -1,47 +1,42 @@
 import { makeStyles } from "@material-ui/styles";
 
+interface IButtonProps {
+  width?: string;
+  height?: string;
+  styledStatus?: string;
+}
+
 const useStyles = makeStyles({
-  buttonStyled: {
-    width: (props: {
-      width?: string;
-      height?: string;
-      background?: string;
-      fontColor?: string;
-    }) => {
+  styledButton: {
+    width: (props: IButtonProps) => {
       return props.width ? props.width : "95%";
     },
-    height: (props: { height?: string }) => {
-      return props.height ? props.height : "8%";
+    height: (props: IButtonProps) => {
+      return props.height ? props.height : "10%";
     },
-    background: (props: { background?: string }) => {
-      if (props.background === "primary") {
+    background: (props: IButtonProps) => {
+      if (props.styledStatus === "primary") {
         return "#252525";
-      } else if (props.background === "secondary") {
-        return "#fefefe";
       } else {
-        return props.background;
+        return "#fefefe";
       }
     },
-    color: (props: { background?: string; fontColor?: string }) => {
-      if (props.background === "primary") {
+    color: (props: IButtonProps) => {
+      if (props.styledStatus === "primary") {
         return "#fefefe";
-      } else if (props.background === "secondary") {
-        return "#252525";
       } else {
-        return props.fontColor;
+        return "#252525";
       }
     },
     fontWeight: "bold",
     boxShadow: "none",
 
     "&:hover": {
-      background: (props: { background?: string }) => {
-        if (props.background === "primary") {
+      background: (props: IButtonProps) => {
+        if (props.styledStatus === "primary") {
           return "#252525";
-        } else if (props.background === "secondary") {
-          return "#fefefe";
         } else {
-          return props.background;
+          return "#fefefe";
         }
       },
     },
