@@ -38,7 +38,6 @@ export class UsersController extends AbstractController {
     const users = await this.userService.findAll(filter);
     return res.json(users.map(createUserListFromUser));
   }
-
   async paginate(req: AuthenticatedRequest, res: Response) {
     const { limit, page, ...filter } = pageable(req.query);
 
@@ -47,7 +46,6 @@ export class UsersController extends AbstractController {
       limit,
       page
     );
-
     return res.json({
       ...resultPage,
       result: result.map(createUserListFromUser),
